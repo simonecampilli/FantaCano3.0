@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Giocatori</title>
+    <!-- Includiamo Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .table-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .mt-4 {
+            margin-top: 2rem !important;
+        }
+        .mb-4 {
+            margin-bottom: 2rem !important;
+        }
+        h1 {
+            color: #4d4d4d;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        th {
+            background-color: #0099ff;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+        td {
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'lista_giocatori' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+    <div class="container">
+        <h1 class="mt-4 mb-4">FANTA CANO</h1>
+        <table class="table">
+            <thead >
+                <tr>
+                    <th> </th>
+                    <th>Nome</th>
+                    <th>Soprannome</th>
+                    <th>Punti Totalizzati</th>
+                    <th>Partite Giocate</th>
+                    <th>GOL</th>
+                    <th>Assist</th>
+                    <th>Media</th>
+                    <th>Posizione</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for giocatore in giocatori %}
+                <tr>
+                    <td><img src="{{ giocatore.immagine.url }}" class="table-img"></td>
+                    <td>{{ giocatore.nome }}</td>
+                    <td>{{ giocatore.soprannome }}</td>
+                    <td>{{ giocatore.punti_totalizzati }}</td>
+                    <td>{{ giocatore.partite_giocate }}</td>
+                    <td>{{ giocatore.gol }}</td>
+                    <td>{{ giocatore.assist }}</td>
+                    <td>{{ giocatore.fanta_media }}</td>
+                    <td> {{ giocatore.posizione }}</td>
+                    <td> <img src="{{ giocatore.immagine2.url }}" class="table-img"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Includiamo jQuery e Popper.js per il funzionamento di Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi4+N" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <!-- Includiamo il file Javascript di Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

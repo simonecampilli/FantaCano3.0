@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mt-5 mb-4">Lista partite</h1>
+    <ul>
+      {% for partita in partite %}
+        <li>
+          <a href="{% url 'dettaglio_partita' partita.id %}">
+            {{ partita.data }} - {{ partita.punteggio_squadra_a }} : {{ partita.punteggio_squadra_b }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

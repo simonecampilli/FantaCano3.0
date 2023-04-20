@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Partita</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Partita del {{ partita.data }}</h1>
+        <h2>Risultato: {{ partita.punteggio_squadra_a }} - {{ partita.punteggio_squadra_b }}</h2>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Squadra A</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Giocatore</th>
+                            <th>Soprannome</th>
+                            <th>Gol</th>
+                            <th>Assist</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for giocatore in squadra_a %}
+                            {% for partecipazione in partecipazioni %}
+                                {% if giocatore.nome == partecipazione.nome %}
+                                    <tr>
+                                        <td>{{ giocatore.nome }}</td>
+                                        <td>{{ giocatore.soprannome }}</td>
+                                        <td>{{ partecipazione.gol }}</td>
+                                        <td>{{ partecipazione.assist }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-6">
+                <h3>Squadra B</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Giocatore</th>
+                            <th>Soprannome</th>
+                            <th>Gol</th>
+                            <th>Assist</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for giocatore in squadra_b %}
+                            {% for partecipazione in partecipazioni %}
+                                {% if giocatore.nome == partecipazione.nome %}
+                                    <tr>
+                                        <td>{{ giocatore.nome }}</td>
+                                        <td>{{ giocatore.soprannome }}</td>
+                                        <td>{{ partecipazione.gol }}</td>
+                                        <td>{{ partecipazione.assist }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</body>
+</html>
