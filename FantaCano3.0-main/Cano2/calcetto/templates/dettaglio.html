@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Partita</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .table-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .mt-4 {
+            margin-top: 2rem !important;
+        }
+        .mb-4 {
+            margin-bottom: 2rem !important;
+        }
+        h1 {
+            color: #4d4d4d;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        th {
+            background-color: #0099ff;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+        td {
+            text-align: center;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'lista_giocatori' %}">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link" href="{% url 'lista_partite' %}">elenco partite</a>
+      </li>
+
+
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+    <div class="container">
+        <h1>Partita del {{ partita.data }}</h1>
+        <h2>Risultato: {{ partita.punteggio_squadra_a }} - {{ partita.punteggio_squadra_b }}</h2>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Squadra A</h3>
+                <table class="table">
+
+
+                    <thead>
+                        <tr>
+                            <th>Giocatore</th>
+                            <th>Soprannome</th>
+                            <th>GOL</th>
+                            <th>assist</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for giocatore in squadra_a %}
+                            {% for partecipazione in partecipazioni %}
+                                {% for partecipazione2 in partecipazioni2 %}
+                                    {% if giocatore.nome == partecipazione2.giocatore.nome %}
+                                {% if giocatore.nome == partecipazione.nome %}
+                                    <tr>
+                                        <td>{{ giocatore.nome }}</td>
+                                        <td>{{ giocatore.soprannome }}</td>
+                                        <td> {{ partecipazione2.gol }}</td>
+                                        <td> {{ partecipazione2.assist }}</td>
+
+                                    </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-sm-6">
+                <h3>Squadra B</h3>
+                <table class="table ">
+                    <thead>
+                        <tr>
+                            <th>Giocatore</th>
+                            <th>Soprannome</th>
+                            <th> GOL</th>
+                            <th> ASSIST</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for giocatore in squadra_b %}
+                            {% for partecipazione in partecipazioni %}
+                             {% for partecipazione2 in partecipazioni2 %}
+                                    {% if giocatore.nome == partecipazione2.giocatore.nome %}
+                                {% if giocatore.nome == partecipazione.nome %}
+                                    <tr>
+                                        <td>{{ giocatore.nome }}</td>
+                                        <td>{{ giocatore.soprannome }}</td>
+                                        <td> {{ partecipazione2.gol }}</td>
+                                        <td> {{ partecipazione2.assist }}</td>
+                                    </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+<!-- Includiamo jQuery e Popper.js per il funzionamento di Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi4+N" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <!-- Includiamo il file Javascript di Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
