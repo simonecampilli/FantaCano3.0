@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualizza Partecipazioni</title>
+</head>
+<body>
+    <h1>Partecipazioni:</h1>
+    <ul>
+        {% for partecipazione in partecipazioni %}
+            <li>{{ partecipazione.giocatore }} - {{ partecipazione.partita }} - Gol: {{ partecipazione.gol }} - Assist: {{ partecipazione.assist }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

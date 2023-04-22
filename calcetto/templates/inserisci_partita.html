@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inserisci Partita</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Inserisci Partita</h1>
+
+		<form method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="data">Data:</label>
+				<input type="date" class="form-control" id="data" name="data" required>
+			</div>
+
+			<div class="form-group">
+				<label for="punteggio_squadra_a">Punteggio Squadra A:</label>
+				<input type="number" class="form-control" id="punteggio_squadra_a" name="punteggio_squadra_a" required>
+			</div>
+
+			<div class="form-group">
+				<label for="punteggio_squadra_b">Punteggio Squadra B:</label>
+				<input type="number" class="form-control" id="punteggio_squadra_b" name="punteggio_squadra_b" required>
+			</div>
+
+			<div class="form-group">
+				<label for="squadra_a">Squadra A:</label>
+				<select class="form-control" id="squadra_a" name="squadra_a" multiple required>
+					{% for giocatore in giocatori %}
+					<option value="{{ giocatore.id }}">{{ giocatore }}</option>
+					{% endfor %}
+				</select>
+			 </div>
+
+			<div class="form-group">
+				<label for="squadra_b">Squadra B:</label>
+				<select class="form-control" id="squadra_b" name="squadra_b" multiple required>
+					{% for giocatore in giocatori %}
+					<option value="{{ giocatore.id }}">{{ giocatore }}</option>
+					{% endfor %}
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-primary">Inserisci Partita</button>
+		</form>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
